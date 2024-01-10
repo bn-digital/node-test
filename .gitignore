@@ -14,3 +14,6 @@ yarn-error.log*
 
 # IDEs and editors
 /.idea
+
+# Configs
+.env
