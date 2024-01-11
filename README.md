@@ -35,3 +35,8 @@ $ docker compose up -d
 # for init the clear database
 $ docker compose exec app npx prisma migrate dev
 ```
+
+## API Reference
+```bash
+http://127.0.0.1:3000/docs/api
+```

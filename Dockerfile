@@ -20,4 +20,4 @@ RUN yarn run build
 ENV NODE_ENV production
 RUN yarn install --production
 USER node
-CMD [ "node", "dist/main.js" ]
+CMD [ "node", "dist/src/main.js" ]
