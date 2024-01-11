@@ -27,7 +27,7 @@ $ yarn run start:prod
 $ yarn run test
 ```
 ## Running with Docker
-Set the `DATABASE_USER`, `DATABASE_PASSWORD` and `DATABASE_DB` variables in the `.env` file
+Set the `DATABASE_URL`, `DATABASE_USER`, `DATABASE_PASSWORD` and `DATABASE_DB` variables in the `.env` file
 ```bash
 # up containers
 $ docker compose up -d
