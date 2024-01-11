@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  app:
+    build:
+      target: production
+      context: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://${DATABASE_USER}:${DATABASE_PASSWORD}@database:5432/${DATABASE_DB}?schema=public
+    depends_on:
+      - database
+
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: ${DATABASE_DB}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}

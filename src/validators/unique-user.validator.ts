@@ -8,9 +8,7 @@ import { UsersService } from '../users/users.service';
 @ValidatorConstraint({ name: 'uniqueUser', async: true })
 @Injectable()
 export class UniqueUserValidator implements ValidatorConstraintInterface {
-  constructor(private readonly usersService: UsersService) {
-    console.log('UsersService: ' + usersService);
-  }
+  constructor(private readonly usersService: UsersService) {}
 
   validate = async (value: any): Promise<boolean> => {
     const entity = await this.usersService.findByEmail(value);
