@@ -1,4 +1,7 @@
-import { PartialType } from '@nestjs/mapped-types';
+import { OmitType } from '@nestjs/mapped-types';
 import { CreateUserDto } from './create-user.dto';
 
-export class UpdateUserDto extends PartialType(CreateUserDto) {}
+// The email field will be ignored
+export class UpdateUserDto extends OmitType(CreateUserDto, [
+  'email',
+] as const) {}

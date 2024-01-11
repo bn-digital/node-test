@@ -1,15 +1,25 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Put,
+  Param,
+  Delete,
+  UseFilters,
+} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { NotFoundExceptionFilter } from '../filters/not-found-exception.filter';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  create(@Body() data: CreateUserDto) {
+    return this.usersService.create(data);
   }
 
   @Get()
@@ -18,16 +28,19 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseFilters(NotFoundExceptionFilter)
   findOne(@Param('id') id: string) {
     return this.usersService.findById(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  @Put(':id')
+  @UseFilters(NotFoundExceptionFilter)
+  update(@Param('id') id: string, @Body() data: UpdateUserDto) {
+    return this.usersService.update(id, data);
   }
 
   @Delete(':id')
+  @UseFilters(NotFoundExceptionFilter)
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }

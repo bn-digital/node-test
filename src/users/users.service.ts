@@ -13,8 +13,13 @@ export class UsersService {
     return this.prisma.user.create({ data });
   }
   async findById(id: string): Promise<User | null> {
-    return this.prisma.user.findUnique({
+    return this.prisma.user.findUniqueOrThrow({
       where: { id: Number(id) },
+    });
+  }
+  async findByEmail(email: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: { email },
     });
   }
   async update(id: string, data: UpdateUserDto): Promise<User | null> {
